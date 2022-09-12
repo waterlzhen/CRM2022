@@ -67,14 +67,20 @@
 						作用：此函数的返回值决定了ajax是否真正向后台发送请求
 						函数返回true/false  当返回true是发送请求，否则不发送
 						*/
-						$("#msg").html("正在努力验证中.....")
+						$("#msg").html("正在努力验证中.....");
 					}
 				});
 			});
 
 			//懒得输入账号和密码
-			$("#loginAct").val("zs");
-			$("#loginPwd").val("yf123");
+			// $("#loginAct").val("zs");
+			// $("#loginPwd").val("yf123");
+			// $("input").focus(function (){
+			// 	$("#msg").html("");
+			// });
+			$("input").keyup(function (){
+				$("#msg").html("");
+			});
 		})
 	</script>
 </head>
