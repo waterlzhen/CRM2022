@@ -55,9 +55,8 @@ public class UserController {
         //    验证账号是否过期
             if (DateUtil.formatDate(new Date()).compareTo(user.getExpiretime()) > 0) {
                 returnObject.setCode(Constant.RETURN_OBJECT_CODE_FAIL);
-                returnObject.setMessage("账号已过期，请和管理员联系");
-            }
-
+                returnObject.setMessage("账号已过期， 请和管理员联系");
+            } 
         //账号是否被锁定
             else if ("0".equals(user.getLockstate())) {
                 returnObject.setCode(Constant.RETURN_OBJECT_CODE_FAIL);

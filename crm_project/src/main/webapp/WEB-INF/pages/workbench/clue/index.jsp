@@ -442,7 +442,7 @@ request.getServerPort() + request.getContextPath() + "/";
 							</div>
 							<label for="create-company" class="col-sm-2 control-label">公司<span style="font-size: 15px; color: red;">*</span></label>
 							<div class="col-sm-10" style="width: 300px;">
-								<input type="text" class="form-control" id="create-company" value="动力节点">
+								<input type="text" class="form-control" id="create-company" value="">
 							</div>
 						</div>
 						
@@ -458,36 +458,36 @@ request.getServerPort() + request.getContextPath() + "/";
 							</div>
 							<label for="create-fullname" class="col-sm-2 control-label">姓名<span style="font-size: 15px; color: red;">*</span></label>
 							<div class="col-sm-10" style="width: 300px;">
-								<input type="text" class="form-control" id="create-fullname" value="杜某">
+								<input type="text" class="form-control" id="create-fullname" value="">
 							</div>
 						</div>
 						
 						<div class="form-group">
 							<label for="create-job" class="col-sm-2 control-label">职位</label>
 							<div class="col-sm-10" style="width: 300px;">
-								<input type="text" class="form-control" id="create-job" value="CTO">
+								<input type="text" class="form-control" id="create-job" value="">
 							</div>
 							<label for="create-email" class="col-sm-2 control-label">邮箱</label>
 							<div class="col-sm-10" style="width: 300px;">
-								<input type="text" class="form-control" id="create-email" value="hao123@qq.com">
+								<input type="text" class="form-control" id="create-email" value="">
 							</div>
 						</div>
 						
 						<div class="form-group">
 							<label for="create-phone" class="col-sm-2 control-label">公司座机</label>
 							<div class="col-sm-10" style="width: 300px;">
-								<input type="text" class="form-control" id="create-phone" value="0511-4405222">
+								<input type="text" class="form-control" id="create-phone" value="">
 							</div>
 							<label for="create-website" class="col-sm-2 control-label">公司网站</label>
 							<div class="col-sm-10" style="width: 300px;">
-								<input type="text" class="form-control" id="create-website" value="http://www.baidu.com">
+								<input type="text" class="form-control" id="create-website" value="">
 							</div>
 						</div>
 						
 						<div class="form-group">
 							<label for="create-mphone" class="col-sm-2 control-label">手机</label>
 							<div class="col-sm-10" style="width: 300px;">
-								<input type="text" class="form-control" id="create-mphone" value="13498791279">
+								<input type="text" class="form-control" id="create-mphone" value="">
 							</div>
 							<label for="create-state" class="col-sm-2 control-label">线索状态</label>
 							<div class="col-sm-10" style="width: 300px;">
@@ -516,7 +516,7 @@ request.getServerPort() + request.getContextPath() + "/";
 						<div class="form-group">
 							<label for="create-description" class="col-sm-2 control-label">线索描述</label>
 							<div class="col-sm-10" style="width: 81%;">
-								<textarea class="form-control" rows="3" id="create-description">描述信息123</textarea>
+								<textarea class="form-control" rows="3" id="create-description"></textarea>
 							</div>
 						</div>
 						
@@ -526,7 +526,7 @@ request.getServerPort() + request.getContextPath() + "/";
 							<div class="form-group">
 								<label for="create-contactSummary" class="col-sm-2 control-label">联系纪要</label>
 								<div class="col-sm-10" style="width: 81%;">
-									<textarea class="form-control" rows="3" id="create-contactSummary">联系纪要123</textarea>
+									<textarea class="form-control" rows="3" id="create-contactSummary"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
@@ -543,7 +543,7 @@ request.getServerPort() + request.getContextPath() + "/";
 							<div class="form-group">
                                 <label for="create-address" class="col-sm-2 control-label">详细地址</label>
                                 <div class="col-sm-10" style="width: 81%;">
-                                    <textarea class="form-control" rows="1" id="create-address">上海市浦东区</textarea>
+                                    <textarea class="form-control" rows="1" id="create-address"></textarea>
                                 </div>
 							</div>
 						</div>

@@ -454,7 +454,7 @@ request.getServerPort() + request.getContextPath() + "/";
 							</div>
                             <label for="create-marketActivityName" class="col-sm-2 control-label">名称<span style="font-size: 15px; color: red;">*</span></label>
                             <div class="col-sm-10" style="width: 300px;">
-                                <input type="text" class="form-control" id="create-marketActivityName" value="测试05">
+                                <input type="text" class="form-control" id="create-marketActivityName" value="">
                             </div>
 						</div>
 						
@@ -472,7 +472,7 @@ request.getServerPort() + request.getContextPath() + "/";
 
                             <label for="create-cost" class="col-sm-2 control-label">成本</label>
                             <div class="col-sm-10" style="width: 300px;">
-                                <input type="text" class="form-control " id="create-cost" value="1110">
+                                <input type="text" class="form-control " id="create-cost" value="">
                             </div>
                         </div>
 						<div class="form-group">

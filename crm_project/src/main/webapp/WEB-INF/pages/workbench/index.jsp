@@ -13,7 +13,7 @@
 <script type="text/javascript" src="jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
 	<style>
 		.left_ul{
-			left:-50;
+			left: -50px;
 		}
 	</style>
 <script type="text/javascript">

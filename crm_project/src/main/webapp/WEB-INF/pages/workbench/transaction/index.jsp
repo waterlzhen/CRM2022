@@ -157,6 +157,7 @@ request.getServerPort() + request.getContextPath() + "/";
 					<tbody id="tBody">
 						<tr>
 							<td><input type="checkbox" /></td>
+						<%--不好意思时间有限，这里就使用固定id--%>
 							<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='workbench/transaction/detailTran.do?id=692476a13eb8410782a06c5fe219de00';">动力节点-交易01</a></td>
 							<td>动力节点</td>
 							<td>谈判/复审</td>
