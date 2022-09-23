@@ -76,14 +76,20 @@ public class UserController {
                //如果记住密码，则往外写cookie
                 if ("true".equals(isRemPwd)){
                     Cookie loginActCookie= new Cookie("loginAct", user.getLoginact());
+                    Cookie loginPwdCookie= new Cookie("loginPwd", user.getLoginpwd());
                     loginActCookie.setMaxAge(60*60*24*10);//有效时长10天
+                    loginPwdCookie.setMaxAge(60*60*24*10);//有效时长10天
                     response.addCookie(loginActCookie);
+                    response.addCookie(loginPwdCookie);
                 }else {
                     //把未过期的cookie删除；
                     //删除cookie的原理，将cookie的生命周期设置为0秒 并返回给浏览器 这样原先的cookie被覆盖了————等同于删除了cookie
-                    Cookie loginActCookie= new Cookie("loginAct","1");
+                    Cookie loginActCookie= new Cookie("loginAct","-1");
+                    Cookie loginPwdCookie= new Cookie("loginPwd", "-1");
                     loginActCookie.setMaxAge(0);//有效时长0
+                    loginPwdCookie.setMaxAge(0);//有效时长0
                     response.addCookie(loginActCookie);
+                    response.addCookie(loginPwdCookie);
                 }
             }
         }
@@ -94,9 +100,12 @@ public class UserController {
     @RequestMapping("/settings/qx/user/logout.do")
     public String logout(HttpSession session,HttpServletResponse response){
         //清除cookie
-        Cookie loginActCookie= new Cookie("loginAct","1");
+        Cookie loginActCookie= new Cookie("loginAct","-1");
+        Cookie loginPwdCookie= new Cookie("loginPwd", "-1");
         loginActCookie.setMaxAge(0);//有效时长0
+        loginPwdCookie.setMaxAge(0);//有效时长0
         response.addCookie(loginActCookie);
+        response.addCookie(loginPwdCookie);
 
 
 //        销毁session  1、销毁session对象 2、把session域中的所有值清空

@@ -85,6 +85,8 @@ request.getServerPort() + request.getContextPath() + "/";
 				$("#checkAllBox").prop("checked",false)
 			}
 		});
+
+
 		$("#saveCreateClueRemarkBtn").click(function (){
 		//	收集参数
 			var noteContent = $.trim($("#remark").val());
@@ -207,21 +209,26 @@ request.getServerPort() + request.getContextPath() + "/";
 			$("#bindModal").modal("show");
 		});
 
-		$("#searchActivityText").keyup(function (){
-			var activityName =this.value;
-			var clueId ='${requestScope.clue.id}'
+		$("#searchActivityText").keydown(function (event){
 
-			$.ajax({
-			    url:"workbench/clue/queryActivityForDetailByNameClueId.do",
-			    data:{
-			    	activityName:activityName,
-					clueId:clueId
-			    },
-			    type:"POST",
-			    dataType:"json",
-			    success:function (data){
-					var htmlStr = "";
-			    		$.each(data,function (index,obj){
+			//禁止回车事件触发
+			if (event.key=="Enter"){return  false;}优化
+			else{
+				console.log(event)
+				var activityName =this.value;
+				var clueId ='${requestScope.clue.id}'
+
+				$.ajax({
+					url:"workbench/clue/queryActivityForDetailByNameClueId.do",
+					data:{
+						activityName:activityName,
+						clueId:clueId
+					},
+					type:"POST",
+					dataType:"json",
+					success:function (data){
+						var htmlStr = "";
+						$.each(data,function (index,obj){
 
 							htmlStr+="<tr>";
 							htmlStr+="<td><input type=\"checkbox\" value=\""+obj.id+"\"/></td>";
@@ -231,9 +238,11 @@ request.getServerPort() + request.getContextPath() + "/";
 							htmlStr+="<td>"+obj.owner+"</td>";
 							htmlStr+="</tr>";
 						});
-			    		$("#tBody").html(htmlStr);
-			        }
-			});
+						$("#tBody").html(htmlStr);
+					}
+				});
+			}
+
 		});
 
 		//给“关联”按钮添加单击事件

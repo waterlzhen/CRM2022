@@ -327,22 +327,25 @@
     LEFT JOIN tbl_user u3 ON c.edit_by = u3.id
     <where>
       <if test="fullname !=null and fullname !=''">
-        and fullname  like '%' #{fullname} '%'
+
+        and fullname like concat('%', #{fullname} ,'%')
       </if>
       <if test="owner !=null and owner !=''">
         and owner  = #{owner}
       </if>
       <if test="company !=null and company !=''">
-        and company  like '%' #{company} '%'
+
+        and company like concat('%', #{company} ,'%')
       </if>
       <if test="mphone !=null and mphone !=''">
-        and mphone  like '%' #{mphone} '%'
+        and mphone like concat('%', #{mphone} ,'%')
       </if>
       <if test="state !=null and state !=''">
         and state  = #{state}
       </if>
       <if test="phone !=null and phone !=''">
-        and phone  like '%' #{phone} '%'
+        and phone like concat('%', #{phone} ,'%')
+
       </if>
       <if test="source !=null and source !=''">
         and source  = #{source}

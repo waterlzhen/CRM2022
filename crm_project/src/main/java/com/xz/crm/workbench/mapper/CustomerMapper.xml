@@ -236,13 +236,15 @@
     select
     name
     from tbl_customer
-    where name like '%' #{customerName} '%'
+
+    where name like contat('%',#{customerName},'%')
   </select>
 
   <select id="selectCustomerByName" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from tbl_customer
-    where name like #{name}
+
+    where name like contat('%',#{customerName},'%')
   </select>
 </mapper>

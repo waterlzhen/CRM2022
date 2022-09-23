@@ -217,7 +217,8 @@ request.getServerPort() + request.getContextPath() + "/";
 						$("#edit-id").val(data.id);
 
 				    	//填充模态窗口数据
-						$("#edit-marketActivityOwner").val(data.owner)
+						$("#edit-marketActivityOwner").val(data.owner); //给
+
 				    	$("#edit-marketActivityName").val(data.name);
 				    	$("#edit-startDate").val(data.startDate);
 				    	$("#edit-endDate").val(data.endDate);
@@ -375,7 +376,7 @@ request.getServerPort() + request.getContextPath() + "/";
 			dataType: "json",
 			success:function (data){
 				//显示总记录条数
-				$("#totalRowsB").html(data.totalRows);
+				// $("#totalRowsB").html(data.totalRows);
 
 				//遍历activityList,拼接所有行数据
 				var htmlStr="";

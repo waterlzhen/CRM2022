@@ -20,12 +20,9 @@ import java.util.List;
 @Controller
 public class IndexController {
 
- @Autowired
- private DicValueService dicValueService;
+
     @RequestMapping("/")
     public String index(HttpSession session){
-        ServletContext context = session.getServletContext();
-
         return "index";
     }
 

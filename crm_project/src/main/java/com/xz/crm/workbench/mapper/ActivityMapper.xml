@@ -218,10 +218,12 @@
     left join tbl_user u3 on a.edit_by=u3.id
     <where>
       <if test="name !=null and name !=''">
-        and a.name like '%' #{name} '%'
+        and a.name like  concat('%',#{name},'%')
+
       </if>
       <if test="owner !=null and owner !=''">
-        and u1.name like '%' #{owner} '%'
+        and a.name like  concat('%',#{owner},'%')
+
       </if>
       <if test="startDate !=null and startDate !=''">
         and a.start_date <![CDATA[>=]]> #{startDate}
@@ -242,10 +244,12 @@
     left join tbl_user u3 on a.edit_by=u3.id
     <where>
       <if test="name !=null and name !=''">
-        and a.name like '%' #{name} '%'
+
+        and a.name like  concat('%',#{name},'%')
       </if>
       <if test="owner !=null and owner !=''">
-        and u1.name like '%' #{owner} '%'
+        and a.name like  concat('%',#{owner},'%')
+
       </if>
       <if test="startDate !=null and startDate !=''">
         and a.start_date <![CDATA[>=]]> #{startDate}
@@ -355,7 +359,7 @@
     a.id,a.name,a.start_Date,a.end_date, u.name as owner
     from tbl_activity a
     join tbl_user u on a.owner=u.id
-    where a.name like '%' #{activityName} '%' and a.id not in (
+    where a.name like  concat('%',#{activityName},'%') and a.id not in (
     select activity_id
     from tbl_clue_activity_relation
     where clue_id = #{clueId}
@@ -380,7 +384,7 @@
     a.id,a.name ,a.start_date ,a.end_date,u.name as  owner
     from tbl_activity a
     join tbl_user u on a.owner=u.id
-    where a.name like '%' #{activityName} '%' and a.id in
+    where a.name like  concat('%',#{activityName},'%') and a.id in
     (select activity_id
     from tbl_clue_activity_relation
     where clue_id = #{clueId}

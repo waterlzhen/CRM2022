@@ -5,6 +5,7 @@ import com.xz.crm.commons.constant.Constant;
 import com.xz.crm.commons.domain.ReturnObject;
 import com.xz.crm.commons.utils.HSSFUtils;
 import com.xz.crm.commons.utils.UUIDUtils;
+import com.xz.crm.exception.MyException;
 import com.xz.crm.settings.domain.User;
 import com.xz.crm.settings.service.UserService;
 import com.xz.crm.workbench.domain.Activity;
@@ -15,6 +16,7 @@ import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.aspectj.apache.bcel.generic.RET;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -93,6 +95,7 @@ public class ActivityController {
     @RequestMapping("/workbench/activity/queryActivityByCondition.do")//根据条件查询市场活动列表
     @ResponseBody
     public Object queryActivityByCondition(String owner, String name, String startDate, String endDate, int pageNo, int pageSize) {      //封装参数
+
         Map<String, Object> map = new HashMap<>();
         map.put("owner", owner);
         map.put("name", name);
@@ -179,7 +182,7 @@ public class ActivityController {
     @RequestMapping("/workbench/activity/fileDownload.do")
     public void fileDownload(HttpServletResponse response) throws IOException {
 
-        System.out.println("文件下载");
+//        System.out.println("文件下载");
 //        1、设置响应类型
         response.setContentType("application/octet-stream;charset=UTF-8");
 
@@ -254,7 +257,7 @@ public class ActivityController {
     @RequestMapping("/workbench/activity/exportXzActivity.do")//根据id导出为excel市场活动
     public void exportXzActivity(String[] id ,HttpServletResponse response) throws Exception{
         List<Activity> activityList = activityService.queryActivityByIds(id);
-        HSSFWorkbook wb = ActivitiesToHSSFWorkbook(activityList);
+        HSSFWorkbook wb = this.ActivitiesToHSSFWorkbook(activityList);
 
         response.setContentType("application/octet-stream;charset=UTF-8");
         String timeStamp = DateUtil.format(new Date(), "yyyyMMddHHmmss");
@@ -288,18 +291,20 @@ public class ActivityController {
             HSSFCell cell = null;
             List<Activity> activityList = new ArrayList<>();
             Activity activity = null;
+            String CreateTime= DateUtil.now();
             for (int i = 1; i <= sheet.getLastRowNum(); i++) {
                 row = sheet.getRow(i);
                 //每一行生成一条 activity对象
                 activity = new Activity();
                 activity.setId(UUIDUtils.getUUID());
                 activity.setOwner(user.getId());
-                activity.setCreateTime(DateUtil.now());
+                activity.setCreateTime(CreateTime);
                 activity.setCreateBy(user.getId());
 
                 for (int j = 0; j < row.getLastCellNum(); j++) {
                     cell = row.getCell(j);
 
+                    //将单元格cell中的内容转为字符串 存入 cellValue中
                     String cellValue = HSSFUtils.getCellValueToStr(cell);
                     if (j == 0) {
                         activity.setName(cellValue);
@@ -318,9 +323,13 @@ public class ActivityController {
                 activityList.add(activity);
             }
             int ret = activityService.saveCreateActivityByList(activityList);
-
-            returnObject.setCode(Constant.RETURN_OBJECT_CODE_SUCCESS);
-            returnObject.setRetData(ret);
+            if (ret>0){
+                returnObject.setCode(Constant.RETURN_OBJECT_CODE_SUCCESS);
+                returnObject.setRetData(ret);
+            }else {
+                returnObject.setCode(Constant.RETURN_OBJECT_CODE_FAIL);
+                returnObject.setMessage("系统忙，请稍后重试...");
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -378,6 +387,7 @@ public class ActivityController {
         cell = row.createCell(10);
         cell.setCellValue("修改人");
 
+                 
         if (activityList!=null&&activityList.size()>0){
             Activity activity=null;
             for (int i =0;i<activityList.size();i++){
