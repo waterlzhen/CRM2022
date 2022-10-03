@@ -212,7 +212,7 @@ request.getServerPort() + request.getContextPath() + "/";
 		$("#searchActivityText").keydown(function (event){
 
 			//禁止回车事件触发
-			if (event.key=="Enter"){return  false;}优化
+			if (event.key=="Enter"){return  false;}
 			else{
 				console.log(event)
 				var activityName =this.value;
